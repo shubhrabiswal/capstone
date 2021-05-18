@@ -3,11 +3,11 @@ import { useHistory } from 'react-router-dom';
 
 const PetZone = () => {
     const history = useHistory();
-    const [petData, setPetData] = useState();
+    const [petdata, setPetdata] = useState({});
 
     const callPetPage = async () => {
         try{
-            const res = await fetch('api/displaypets', {
+            const res = await fetch('/api/displaypets', {
                 method: "GET",
                 headers:{
                     Accept: "application/json",
@@ -18,6 +18,7 @@ const PetZone = () => {
 
             const data = await res.json();
             console.log("petzone data  ",data);
+            setPetdata(data);
             
             if (!res.status === 200){
                 const error = new Error(res.error);
@@ -29,8 +30,17 @@ const PetZone = () => {
         }
     }
 
+    useEffect(() => {
+       callPetPage();
+    }, []);
+
     return (
-        <></>
+        <>
+            <div className ="container details">
+                <h1>Dogs</h1>
+                <p>pet {petdata.petname}</p>
+            </div>
+        </>
     )
 }
 

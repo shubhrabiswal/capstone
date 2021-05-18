@@ -10,30 +10,30 @@ exports.addpet = (req, res) => {
       return { img: file.location };
     });
   }
-  // console.log(req.body)
-
-  // const pet =  new Pet ({
-  //   petname:req.body.name,
-  //   breed:req.body.breed,
-  //   origin:req.body.origin,
-  //   food_preference:req.body.food_preference,
-  //   pic_file,
-  //   speciality:req.body.speciality
-  // })
-
-  const obj = JSON.parse(JSON.stringify(req.body));
-  console.log(obj);
-  console.log(obj.petname)
+  console.log("req.body",req.body)
 
   const pet =  new Pet ({
-    petname:obj.petname,
-    breed:obj.breed,
-    origin:obj.origin,
-    food_preference:obj.food_preference,
+    petname:req.body.petname,
+    breed:req.body.breed,
+    origin:req.body.origin,
+    food_preference:req.body.food_preference,
     pic_file,
-    speciality:obj.speciality
+    speciality:req.body.speciality
   })
-  console.log(pet)
+
+  // const obj = JSON.parse(JSON.stringify(req.body));
+  // console.log(obj);
+  // console.log(obj.petname)
+
+  // const pet =  new Pet ({
+  //   petname:obj.petname,
+  //   breed:obj.breed,
+  //   origin:obj.origin,
+  //   food_preference:obj.food_preference,
+  //   pic_file,
+  //   speciality:obj.speciality
+  // })
+  console.log("pet",pet)
 
   pet.save((error, pet) => {
     if (error) return res.status(400).json({ error });

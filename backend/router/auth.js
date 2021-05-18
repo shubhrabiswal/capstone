@@ -9,7 +9,7 @@ const authenticate = require("../middleware/authenticate")
 
 router.post("/signup", async (req, res) => {
   const { name, email, phone, work, password, cpassword, role } = req.body;
-  if (!name || !email || !phone|| !work || !password || !cpassword ){   //|| !role) {    ///!phone
+  if (!name || !email || !phone || !password || !cpassword ){   //|| !role) {    ///!phone
     console.log(req.body);
     return res.status(422).json({ err: "plz filled properly" });
   }
@@ -85,7 +85,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/loginadmin", async (req, res) => {
+router.post("/logindoctor", async (req, res) => {
   try {
     let token;
     const { email, password} = req.body;
@@ -112,7 +112,7 @@ router.post("/loginadmin", async (req, res) => {
         console.log("res.cookie",token);
       }else{
         res.status(400).json({error: "Invalid role"});
-        alert("Only admin login allowed");
+        alert("Only doctor login allowed");
       }
       
 

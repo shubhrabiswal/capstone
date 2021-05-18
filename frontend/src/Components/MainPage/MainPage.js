@@ -44,7 +44,7 @@ const MainPage = () => {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link className="navLink" href="/api/displaypets">
+              <Nav.Link className="navLink" href="/petzone">
                 PetZone
               </Nav.Link>
             </Nav.Item>

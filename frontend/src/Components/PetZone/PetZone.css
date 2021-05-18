@@ -1,0 +1,26 @@
+/* *{
+    background-color: #c2e6eb;
+} */
+
+.dogs{
+    background-color: #c2e6eb;
+    display: flex;
+}
+
+.dog1{
+    margin-top: 80px;
+    margin-left: 100px;
+    font-weight: 700;
+}
+
+.img1{
+    width: 100px;
+    height: 150px; 
+    border-radius: 10px;
+}
+
+.text1{
+    font-weight: 700;
+    float:right;
+}
+

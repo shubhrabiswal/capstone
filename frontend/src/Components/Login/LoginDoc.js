@@ -5,13 +5,13 @@ import 'react-router';
 import { GoogleLogin } from 'react-google-login';
 import Icon from './icon';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Avatar, Button, paper, Grid, Typography, Container } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import useStyles from './styles';
 
-import {createStore, combineReducers} from 'redux';
+// import {createStore, combineReducers} from 'redux';
 import {Provider, useDispatch} from 'react-redux';
 import { AUTH } from '../../constants/actionTypes';
-import store from '../../reducers/index'
+import store from '../../reducers/index';
 
 const LoginWrapper = () => {
   
@@ -20,7 +20,7 @@ const LoginWrapper = () => {
         <Login /> 
       </Provider>
     )
-}
+} 
 
 
 const Login = () => {
@@ -49,11 +49,11 @@ const Login = () => {
     const PostData = async (e) => {
         e.preventDefault();
 
-        const {email, password} = user;
+        const {email, password, role} = user;
         console.log(email)
         console.log(password)
-
-        const res = await fetch("/login",{
+        console.log(role)
+        const res = await fetch("/logindoctor",{
             method:"POST",
             headers:{
                 "Content-Type" : "application/json"
@@ -73,7 +73,7 @@ const Login = () => {
             window.alert("Login Successful");
             console.log("Login Successful");
 
-            history.push("/");
+            history.push("/dashboard");
         }
 
     }

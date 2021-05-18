@@ -7,7 +7,7 @@ import 'react-router';
 const Signup = () => {
     const history = useHistory();
     const [user, setUser] = useState({
-        name:"",email:"",phone:"",work:"",password:"",cpassword:"",role:""
+        name:"",email:"",phone:"",password:"",cpassword:"",role:""
     });
 
     let name,value;
@@ -24,7 +24,7 @@ const Signup = () => {
     const PostData = async (e) => {
         e.preventDefault();
 
-        const {name, email, phone, work, password, cpassword, role} = user;
+        const {name, email, phone, password, cpassword, role} = user;
 
         const res = await fetch("/signup",{
             method:"POST",
@@ -35,7 +35,6 @@ const Signup = () => {
                 name: name, 
                 email: email, 
                 phone: phone, 
-                work: work, 
                 password: password,
                 cpassword: cpassword,
                 role:role
@@ -50,8 +49,15 @@ const Signup = () => {
         }else{
             window.alert("Registration Successful");
             console.log("Registration Successful");
-
-            history.push("/login");
+            console.log("user",user)
+            console.log("res",res)
+            console.log("role",user.role)
+            if (user.role === "user"){
+                history.push("/login");
+            }else if(user.role === "doctor"){
+                history.push("/logindoctor")
+            }
+            
         }
 
     }
@@ -86,14 +92,6 @@ const Signup = () => {
                             onChange = {handleInputs}
                             placeholder="" 
                             />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="work">Work</label>
-                        <input type="text" className="form-control" name = "work" id="work" autoComplete ="off"
-                            value = {user.work}
-                            onChange = {handleInputs}
-                            placeholder="work" 
-                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
