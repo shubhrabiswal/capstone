@@ -29,7 +29,7 @@ const Login = () => {
     const dispatch = useDispatch();
     
     const [user, setUser] = useState({
-        email:"",password:""
+        email:"",password:"",role:""
     });
 
     // const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -63,13 +63,20 @@ const Login = () => {
             },
             body: JSON.stringify({
                 email: email, 
-                password: password
+                password: password,
+                role:role
             })
         })
         console.log("res", res);
         const data = await res.json();
         console.log("data",data)
-        if(res.status === 422 || !data){  
+        console.log("role",user.role)
+        if (user.role === "doctor"){
+            window.alert("click ok to redirect to doctor login page");
+            console.log("role == doctor");
+
+            history.push("/logindoctor");
+        }else if(res.status === 422 || res.status === 400 || !data){  
             window.alert("Invalid Registration");
             console.log("Invalid Registration");
         }else{
@@ -130,6 +137,14 @@ const Login = () => {
                         <label htmlFor="password">Password</label>
                         <input type="password" className="form-control" name = "password" id="password" autoComplete ="off"
                             value = {user.password}
+                            onChange = {handleInputs}
+                            placeholder="Password" 
+                            />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="role">Role</label>
+                        <input type="role" className="form-control" name = "role" id="role" autoComplete ="off"
+                            value = {user.role}
                             onChange = {handleInputs}
                             placeholder="Password" 
                             />
